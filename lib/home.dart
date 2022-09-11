@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Animaciones para delivery'),
+          title: const Text('retos flutter pre delivery'),
         ),
         body: ListView.separated(
             itemBuilder: (context, index) => ListTile(

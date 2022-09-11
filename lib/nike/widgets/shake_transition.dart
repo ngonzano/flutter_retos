@@ -6,6 +6,7 @@ class ShakeTransition extends StatelessWidget {
   final Duration duration;
   final double offset;
   final Axis axis;
+  final Curve curve;
 
   const ShakeTransition({
     Key? key,
@@ -13,11 +14,12 @@ class ShakeTransition extends StatelessWidget {
     this.duration = const Duration(microseconds: 1000),
     this.offset = 140.0,
     this.axis = Axis.horizontal,
+    this.curve = Curves.elasticOut,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
-      curve: Curves.elasticOut,
+      curve: curve,
       builder: (BuildContext context, Object value, Widget? child) {
         value as double;
         return Transform.translate(

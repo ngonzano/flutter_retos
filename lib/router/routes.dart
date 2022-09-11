@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../home.dart';
 import '../models/models.dart';
-import '../nike/shoes_store.dart';
+import '../nike/page/shoes_store.dart';
 
 class Approutes {
   static const initialRoute = 'home';
@@ -12,7 +12,7 @@ class Approutes {
 
     MenuOption(
         route: 'shoesStore',
-        icon: Icons.list_alt,
+        icon: Icons.directions_boat_filled,
         screen: ShoesStore(),
         name: 'Nike Shoes Store'),
   ];
