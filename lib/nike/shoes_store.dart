@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-
 import 'model/model_shoes_store.dart';
 import 'shoes_detail.dart';
 
 class ShoesStore extends StatelessWidget {
   ShoesStore({Key? key}) : super(key: key);
 
-//para no usar un setState y sea animado el menu con un cambio de estado
+  ///para no usar un setState y sea animado el menu con un cambio de estado
   final ValueNotifier<bool> notifierBottomBarVisible = ValueNotifier(true);
 
+  ///Metodo para cambiar de page y desaparecer el menu animado
   void _onShoesPressed(Shoes shoes, BuildContext context) async {
     notifierBottomBarVisible.value = false; //desaparece el menu
     await Navigator.of(context).push(
@@ -26,111 +26,117 @@ class ShoesStore extends StatelessWidget {
     notifierBottomBarVisible.value = true; //visible el menu
   }
 
+  ///Show all data in page
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: const Text('NIKE'),
-            foregroundColor: Colors.black,
-            leading: const BackButton(color: Colors.black),
-            backgroundColor: Colors.white,
-            centerTitle: true,
-            elevation: 0,
-            actions: [
-              Image.network(
-                width: 50,
-                height: 50,
-                'https://graffica.info/wp-content/uploads/2022/04/logotipo-nike-838x285x80xX.jpeg',
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          title: const Text('NIKE'),
+          foregroundColor: Colors.black,
+          leading: const BackButton(color: Colors.black),
           backgroundColor: Colors.white,
-          body: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
+          centerTitle: true,
+          elevation: 0,
+          actions: [
+            Image.network(
+              width: 50,
+              height: 50,
+              'https://graffica.info/wp-content/uploads/2022/04/logotipo-nike-838x285x80xX.jpeg',
+            ),
+          ],
+        ),
+        backgroundColor: Colors.white,
+        body: Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30, top: 20),
+              child: Column(
+                children: [
+                  Expanded(
+                    ///Show all items in page
+                    child: ListView.builder(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      itemCount: shoes.length,
+                      itemBuilder: (context, index) {
+                        final shoesItem = shoes[index]; //get data
+                        return _ShoesItem(
+                          shoesItem: shoesItem,
+                          onTap: () {
+                            _onShoesPressed(shoesItem, context);
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            ///para escuchar al ValueNotifier<bool> notifierBottomBarVisible
+            ///notifierBottomBarVisible cuando cambia viene aqui y se vuelve a
+            ///dibujar
+
+            ValueListenableBuilder(
+              valueListenable: notifierBottomBarVisible,
+              builder: (BuildContext context, value, Widget? child) {
+                value as bool;
+                return AnimatedPositioned(
+                    left: 0,
+                    right: 0,
+                    bottom: value
+                        ? 0.0
+                        : -kToolbarHeight, //para hacer el cambio sin setState
+                    height: kToolbarHeight,
+                    duration: const Duration(milliseconds: 400),
+                    child: child!);
+              },
+              child: Container(
+                color: Colors.white.withOpacity(0.7),
+                child: Row(
+                  children: const [
                     Expanded(
-                      child: ListView.builder(
-                        padding: const EdgeInsets.symmetric(vertical: 20),
-                        itemCount: shoes.length, //longitud del arreglo
-                        itemBuilder: (context, index) {
-                          final shoesItem = shoes[index]; //obtiene los datos
-                          return ShoesItem(
-                            shoesItem: shoesItem,
-                            onTap: () {
-                              _onShoesPressed(shoesItem, context);
-                            },
-                          );
-                        },
+                      child: Icon(Icons.home),
+                    ),
+                    Expanded(
+                      child: Icon(Icons.search),
+                    ),
+                    Expanded(
+                      child: Icon(Icons.favorite_border),
+                    ),
+                    Expanded(
+                      child: Icon(Icons.shopping_cart_outlined),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: CircleAvatar(
+                          radius: 13,
+                          backgroundImage:
+                              NetworkImage('http://placeimg.com/640/480/tech'),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-              //para escuchar al ValueNotifier notifierBottomBarVisible
-              //usar ValueListenableBuilder
-              ValueListenableBuilder(
-                valueListenable: notifierBottomBarVisible,
-                builder: (BuildContext context, value, Widget? child) {
-                  value as bool;
-                  return AnimatedPositioned(
-                      left: 0,
-                      right: 0,
-                      bottom: value
-                          ? 0.0
-                          : -kToolbarHeight, //para hacer el cambio sin setState
-                      height: kToolbarHeight,
-                      duration: const Duration(milliseconds: 500),
-                      child: child!);
-                },
-                child: Container(
-                  color: Colors.white.withOpacity(0.7),
-                  child: Row(
-                    children: const [
-                      Expanded(
-                        child: Icon(Icons.home),
-                      ),
-                      Expanded(
-                        child: Icon(Icons.search),
-                      ),
-                      Expanded(
-                        child: Icon(Icons.favorite_border),
-                      ),
-                      Expanded(
-                        child: Icon(Icons.shopping_cart_outlined),
-                      ),
-                      Expanded(
-                        child: Center(
-                          child: CircleAvatar(
-                            radius: 13,
-                            backgroundImage: NetworkImage(
-                                'http://placeimg.com/640/480/tech'),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          )),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
 
-class ShoesItem extends StatelessWidget {
+///Data Item(image and text)
+class _ShoesItem extends StatelessWidget {
   final Shoes shoesItem;
   final VoidCallback onTap;
-  const ShoesItem({Key? key, required this.shoesItem, required this.onTap})
+  const _ShoesItem({Key? key, required this.shoesItem, required this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const itemHeight = 290.0;
+    const itemHeight = 300.0;
     return Padding(
       padding: const EdgeInsets.only(bottom: 20.0),
       child: InkWell(
@@ -138,7 +144,6 @@ class ShoesItem extends StatelessWidget {
         child: SizedBox(
           height: itemHeight,
           child: Stack(
-            // fit: StackFit.expand,
             children: [
               Hero(
                 tag: 'bg_${shoesItem.model}',
