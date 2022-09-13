@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+class ShakeTransitionContainer extends StatelessWidget {
+  const ShakeTransitionContainer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: ShakeTransition(child: Text('data')),
+    );
+  }
+}
+
 ///use in nike,
 ///efecto rebote
 class ShakeTransition extends StatelessWidget {

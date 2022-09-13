@@ -1,4 +1,4 @@
-#Mon Sep 12 12:17:12 PET 2022
+#Mon Sep 12 21:51:39 PET 2022
 base.0=/Users/niltongr/Documents/GitHub/flutter_retos/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
