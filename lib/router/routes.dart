@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../animacion/travel_photos.dart';
 import '../home.dart';
 import '../models/models.dart';
 import '../nike/page/shoes_store.dart';
@@ -11,6 +12,11 @@ class Approutes {
   static final menuOptions = <MenuOption>[
     //MenuOption(route: 'home', icon: Icons.home, screen: HomeScreen(), name: 'Home'),
 
+    MenuOption(
+        route: 'travelPhotosHome',
+        icon: Icons.g_mobiledata,
+        screen: const TravelPhotosHome(),
+        name: 'TravelPhotosHome'),
     MenuOption(
         route: 'TweenAnimationBuilder',
         icon: Icons.g_mobiledata,

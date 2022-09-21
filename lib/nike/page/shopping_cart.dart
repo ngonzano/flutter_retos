@@ -103,6 +103,9 @@ class _ShoppingCartState extends State<ShoppingCart>
           final currentImageSize = (_imageSize * _animationResize!.value)
               .clamp(_finalImageSize, _imageSize);
 
+          print(
+              'size.height * 0.4 + _animationMovementIn!.value * size.height: ${size.height * 0.4 + (_animationMovementIn!.value * size.height)}');
+
           return Stack(
             fit: StackFit.expand,
             children: [
@@ -122,10 +125,13 @@ class _ShoppingCartState extends State<ShoppingCart>
               Positioned.fill(
                 child: Stack(
                   children: [
+                    ///Panel Circle White
                     if (_animationMovementIn!.value != 1) ...[
                       Positioned(
                         top: size.height * 0.4 +
-                            (_animationMovementIn!.value * size.height * 0.475),
+                            (_animationMovementIn!.value *
+                                size.height *
+                                0.4758),
                         left: size.width * 0.5 - panelSizeWidth * 0.5,
                         width: panelSizeWidth,
                         height: panelSizeHeight,
