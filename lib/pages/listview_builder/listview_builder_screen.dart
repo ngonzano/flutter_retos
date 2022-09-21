@@ -172,7 +172,8 @@ class VistaCuadrilla extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        physics: const BouncingScrollPhysics(),
+        // physics: const BouncingScrollPhysics(),
+        physics: const PageScrollPhysics(),
         controller: scrollController,
         itemCount: imageIds.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -206,7 +207,8 @@ class Lista extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       ///para el mismo efecto de IOS en Android
-      physics: const BouncingScrollPhysics(),
+      // physics: const BouncingScrollPhysics(),
+      physics: const PageScrollPhysics(),
       controller: scrollController,
       itemCount: imageIds.length,
       itemBuilder: (BuildContext context, int index) {

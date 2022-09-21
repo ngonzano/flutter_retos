@@ -9,4 +9,12 @@ class EnableButtonShopping with ChangeNotifier {
     _enableButtonShopping = enableShopping;
     notifyListeners();
   }
+
+  int _indexPage = 0;
+  int get indexPage => _indexPage;
+
+  void setIndex({required int index}) {
+    _indexPage = index;
+    notifyListeners();
+  }
 }

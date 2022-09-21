@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class NGRTweenAnimationBuilder extends StatelessWidget {
   const NGRTweenAnimationBuilder({Key? key}) : super(key: key);
@@ -16,7 +14,6 @@ class NGRTweenAnimationBuilder extends StatelessWidget {
             curve: Curves.fastLinearToSlowEaseIn,
             builder: (BuildContext context, Object? value, Widget? child) {
               value as double;
-              print(value);
               return Transform(
                 transform: Matrix4.identity()..translate(100.0 * value),
                 child: child!,
