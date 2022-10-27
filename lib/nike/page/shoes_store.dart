@@ -12,6 +12,7 @@ class ShoesStore extends StatelessWidget {
   ///Metodo para cambiar de page y desaparecer el menu animado
   void _onShoesPressed(Shoes shoes, BuildContext context) async {
     notifierBottomBarVisible.value = false; //desaparece el menu
+
     await Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (context, animation1, animation2) {
@@ -24,6 +25,7 @@ class ShoesStore extends StatelessWidget {
         },
       ),
     );
+
     notifierBottomBarVisible.value = true; //visible el menu
   }
 

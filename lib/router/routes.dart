@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_retos/pages/staggered_dual_view.dart';
 
+import '../animacion/clipper.dart';
+import '../animacion/multiple_card_flow.dart';
 import '../animacion/travel_photos.dart';
 import '../home.dart';
 import '../models/models.dart';
@@ -13,6 +16,21 @@ class Approutes {
     //MenuOption(route: 'home', icon: Icons.home, screen: HomeScreen(), name: 'Home'),
 
     MenuOption(
+        route: 'staggered_dual_view',
+        icon: Icons.face,
+        screen: const MainStaggeredDualView(),
+        name: 'StaggeredDualView'),
+    MenuOption(
+        route: 'multipleCardFlow',
+        icon: Icons.face,
+        screen: const MultipleCardFlow(),
+        name: 'MultipleCardFlow'),
+    MenuOption(
+        route: 'Clipper',
+        icon: Icons.g_mobiledata,
+        screen: const ClipperPage(),
+        name: 'clipper'),
+    MenuOption(
         route: 'travelPhotosHome',
         icon: Icons.g_mobiledata,
         screen: const TravelPhotosHome(),
@@ -20,7 +38,7 @@ class Approutes {
     MenuOption(
         route: 'TweenAnimationBuilder',
         icon: Icons.g_mobiledata,
-        screen: const NGRTweenAnimationBuilder(),
+        screen: const TextoAnimandose(),
         name: 'TweenAnimationBuilder<double>'),
     MenuOption(
         route: 'splashScreen',

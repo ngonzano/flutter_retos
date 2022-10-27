@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 
-class NGRTweenAnimationBuilder extends StatelessWidget {
-  const NGRTweenAnimationBuilder({Key? key}) : super(key: key);
+class TextoAnimandose extends StatelessWidget {
+  const TextoAnimandose({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return TextoAnimado(
+      widget: Text('fsdv'),
+    );
+  }
+}
+
+class TextoAnimado extends StatelessWidget {
+  const TextoAnimado({Key? key, required this.widget}) : super(key: key);
+
+  final Widget widget;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +33,7 @@ class NGRTweenAnimationBuilder extends StatelessWidget {
             },
             duration: const Duration(milliseconds: 1500),
             tween: Tween(begin: 0, end: 1),
-            child: Text('kjbcsvbdsvc'),
+            child: widget,
           ),
         ]),
       ),

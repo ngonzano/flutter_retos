@@ -26,8 +26,12 @@ class _TravelPhotosHomeState extends State<TravelPhotosHome> {
               height: topCardHeight,
               left: 0,
               right: 0,
-              child: TravelPhotosListItem(
-                index: watch.indexPage,
+              child: AnimatedContainer(
+                color: watch.indexPage % 2 == 0 ? Colors.white : Colors.blue,
+                duration: const Duration(milliseconds: 500),
+                child: TravelPhotosListItem(
+                  index: watch.indexPage,
+                ),
               ),
             ),
             Positioned(
